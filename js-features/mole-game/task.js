@@ -24,18 +24,37 @@ function handleClick(event) {
 
   if (hole.classList.contains(`hole_has-mole`)) {
     dead++;
-    alert(`Попадание! +1 очко`);
   } else {
     lost++;
-    alert(`Промах! -1 очко`);
   }
 
   updateScore();
+
+  if (dead >= 5) {
+    showGameOverMessage('Победа! Вы уничтожили 5 кротов!');
+    return;
+  }
+
+  if (lost >= 5) {
+    showGameOverMessage('Поражение! Вы промахнулись 5 раз.');
+    return;
+  }
+
   showMole();
 }
 
+function showGameOverMessage(message) {
+  alert(message);
+  gameOver = true;
+  dead = 0;
+  lost = 0;
+  gameOver = false;
+
+  updateScore();
+}
+
 for (let i = 1; i <= 9; i++) {
-  const hole = getHole(i);
-  hole.onclick = handleClick;
+    const hole = getHole(i);
+    hole.onclick = handleClick;
 }
 showMole();

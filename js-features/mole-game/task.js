@@ -10,15 +10,6 @@ function updateScore() {
   document.getElementById('lost').textContent = lost;
 }
 
-function showMole() {
-  for (let i = 1; i <= 9; i++) {
-    getHole(i).classList.remove(`hole_has-mole`);
-  }
-
-  const randomHoleIndex = Math.floor(Math.random() * 9) + 1;
-  getHole(randomHoleIndex).classList.add('hole_has-mole');
-}
-
 function handleClick(event) {
   const hole = event.target;
 

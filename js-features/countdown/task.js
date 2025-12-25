@@ -1,6 +1,6 @@
 const timerElement = document.getElementById("timer");
 
-let timerValue = 59;
+let timerValue = 9;
 
 function formatTime(totalSeconds) {
 const hours = Math.floor(totalSeconds / 3600);
@@ -24,21 +24,18 @@ function updateTimer() {
   if (timerValue <= 0) {
     clearInterval(timerInterval);
     alert("вы победили в конкурсе!");
+    downloadFile('http://hello.kitty', 'kitty');
   }
 }
 
 const timerInterval = setInterval(updateTimer,1000);
 
-function downloadfile(url,filename) {
-  const link = document.createElement("a");
+function downloadFile(url, filename) {
+  const link = document.createElement('a');
   link.href = url;
   link.download = filename;
-  link.target = "_blank";
+  link.style.display = 'none';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
 }
-
-document.getElementById('downloadBtn').addEventListener('click', function() {
-    downloadfile('http://hello.kitty', 'kitty');
-});
